@@ -7,7 +7,7 @@ function MainMenu() {
         <Link to="master" className="mainOptions col-span-3">
           College List
         </Link>
-        <Link to="/" className="mainOptions col-span-3">
+        <Link to="/scheduler" className="mainOptions col-span-3">
           Generate Schedule
         </Link>
         <Link
