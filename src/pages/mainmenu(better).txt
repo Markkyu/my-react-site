@@ -1,0 +1,122 @@
+import { Link } from "react-router-dom";
+
+import { useState } from "react";
+import {
+  Menu,
+  LayoutDashboard,
+  FileText,
+  Settings,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
+function MainMenu() {
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+
+  const toggleSidebar = () => setSidebarExpanded(!sidebarExpanded);
+
+  const commonDivClass =
+    "rounded-xl overflow-auto p-2 h-full max-h-full transition-all duration-500";
+
+  return (
+    <div className="flex h-dvh">
+      {/* Sidebar */}
+      <div
+        className={`transition-all duration-500 bg-blue-600 text-white flex flex-col ${
+          sidebarExpanded ? "w-64" : "w-16"
+        }`}
+      >
+        <button
+          className="p-4 flex items-center justify-between hover:bg-blue-700"
+          onClick={toggleSidebar}
+        >
+          <Menu className="w-5 h-5" />
+          {sidebarExpanded ? (
+            <ChevronLeft className="w-5 h-5" />
+          ) : (
+            <ChevronRight className="w-5 h-5" />
+          )}
+        </button>
+
+        <div className="mt-4 flex-1 space-y-2">
+          <SidebarItem icon={<LayoutDashboard />} label="Dashboard" expanded={sidebarExpanded} />
+          <SidebarItem icon={<FileText />} label="Documents" expanded={sidebarExpanded} />
+          <SidebarItem icon={<Settings />} label="Settings" expanded={sidebarExpanded} />
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-5 overflow-hidden">
+        <div className="grid grid-cols-10 grid-rows-6 gap-3 h-full transition-all duration-500">
+          <div
+            className={`${commonDivClass} ${
+              sidebarExpanded ? "col-span-5" : "col-span-4"
+            } row-span-3 bg-gray-100`}
+          >
+            div 1
+          </div>
+          <div
+            className={`${commonDivClass} ${
+              sidebarExpanded ? "col-span-5" : "col-span-3"
+            } row-span-3 bg-gray-400`}
+          >
+            div 2
+          </div>
+          <div className="col-span-3 row-span-5 bg-gray-300 rounded-xl transition-all duration-500">
+            div 3
+          </div>
+          <div
+            className={`${commonDivClass} ${
+              sidebarExpanded ? "col-span-5" : "col-span-3"
+            } row-span-3 bg-gray-400`}
+          >
+            div 4
+          </div>
+          <div
+            className={`${commonDivClass} ${
+              sidebarExpanded ? "col-span-5" : "col-span-4"
+            } row-span-3 bg-gray-300`}
+          >
+            div 5
+          </div>
+          <div className="col-span-3 bg-gray-200 rounded-xl transition-all duration-500">
+            div 6
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Sidebar item with icon and optional label
+function SidebarItem({ icon, label, expanded }) {
+  return (
+    <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition-all duration-300 cursor-pointer">
+      <span className="w-6 h-6">{icon}</span>
+      {expanded && <span className="ml-3">{label}</span>}
+    </div>
+  );
+}
+
+export default MainMenu;
+
+
+// <div className="container-fluid h-dvh grid py-10 px-20 2xl:py-25 2xl:px-50">
+
+{/* <div className="grid grid-cols-6 grid-rows-2 gap-3"> */}
+
+{/* <Link to="/" className="mainOptions col-span-3 text-3xl 2xl:text-5xl">
+          College List
+        </Link>
+        <Link to="/" className="mainOptions col-span-3 text-3xl 2xl:text-5xl">
+          Generate Schedule
+        </Link>
+        <Link to="courses" className="mainOptions col-span-2 text-3xl 2xl:text-5xl">
+          Course List
+        </Link>
+        <Link to="teachers" className="mainOptions col-span-2 text-3xl 2xl:text-5xl">
+          Teacher List
+        </Link>
+        <Link to="rooms" className="mainOptions col-span-2 text-3xl 2xl:text-5xl">
+          Room List
+        </Link> */}
